@@ -7,15 +7,19 @@ var url  = require("url");
 var routes = require("./routes");
 
 function onRequest(request, response) {
-	// search for the route
-	var path = url.parse(request.href);
+	var path = request.url;
+	
+	if(routes[path] instanceof undefined || routes[path] == 'undefined') {
+		console.log('404');
+	} else {
+		console.log('in array, controller: ' + routes[path]['controller']);
+	}
 
 	// write header
 	response.writeHeader(200, {'Content-Type': 'text/html'});
 
 	// write body
 	response.write('Hello!');
-	response.write('You visited ' + path);
 
 	// end
 	response.end();
