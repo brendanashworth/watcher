@@ -22,7 +22,6 @@ function onRequest(request, response) {
 			if (err) {
 				// did someone remove the page or something
 				console.log('Error occured: could not access file ~/static/404.html');
-				console.log(err);
 				response.end();
 				return;
 			}
