@@ -13,3 +13,9 @@ var routes = {
 	}
 
 };
+
+// get the routes
+function getRoutes() {
+	// Get the routes
+	return routes;
+}

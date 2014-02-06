@@ -3,16 +3,30 @@
 var http = require("http");
 var url  = require("url");
 
-// require routes
-var routes = require("./routes");
+// get the routes
+var routes = {
+	// index
+	'/' : {
+		'controller' : 'index'
+	},
+	// network
+	'/network' : {
+		'controller' : 'network'
+	},
+	// network status
+	'/network/status' : {
+		'controller' : 'network/status'
+	}
+
+};
 
 function onRequest(request, response) {
 	var path = request.url;
-	
-	if(routes[path] instanceof undefined || routes[path] == 'undefined') {
-		console.log('404');
+
+	if(inArray(routes, path)) {
+		console.log('in');
 	} else {
-		console.log('in array, controller: ' + routes[path]['controller']);
+		console.log('out');
 	}
 
 	// write header
