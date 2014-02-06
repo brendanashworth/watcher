@@ -1,16 +1,16 @@
 // network.js is a controller
-var fs = require("fs");
+var fs    = require("fs");
 
 module.exports = {
 	// run the controller
 	run: function(request, response) {
 		// write header
-		response.writeHeader(200, {'Content-Type': 'text/html'});
+		response.writeHeader(404, {'Content-Type': 'text/html'});
 
 		// read /static/network.html
-		fs.readFile(__dirname + '/../../static/network.html', function(err, data) {
+		fs.readFile(__dirname + '/../../static/404.html', function(err, data) {
 			if (err) {
-				console.log('Error occured: could not access file ~/static/network.html');
+				console.log('Error occured: could not access file ~/static/404.html');
 				response.end();
 				return;
 			}
