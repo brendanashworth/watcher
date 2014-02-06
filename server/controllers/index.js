@@ -1,4 +1,5 @@
 // index.js is a controller
+var fs = require("fs");
 
 module.exports = {
 	// run the controller
@@ -6,8 +7,18 @@ module.exports = {
 		// write header
 		response.writeHeader(200, {'Content-Type': 'text/html'});
 
-		// write body
-		response.write('<html><body>Welcome to the index! <a href="/network">Click for network</a></body></html>');
+		// read /static/network.html
+		fs.readFile(__dirname + '/../../static/index.html', function(err, data) {
+			if (err) {
+				console.log('Error occured: could not access file ~/static/index.html');
+				response.end();
+				return;
+			}
+
+			response.write(data);
+
+			response.end();
+		});
 
 		// end
 		response.end();

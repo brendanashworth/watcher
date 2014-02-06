@@ -1,5 +1,5 @@
 // network.js is a controller
-var fs    = require("fs");
+var fs = require("fs");
 
 module.exports = {
 	// run the controller
