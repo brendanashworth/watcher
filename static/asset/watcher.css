@@ -1,0 +1,15 @@
+.block {
+	border: 1px solid #FF9200;
+	background: #ddd;
+
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.block-title {
+	/* gradient #FFAD40 -> #FFC373 */
+	background: #ccc;
+
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
