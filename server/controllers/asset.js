@@ -15,13 +15,9 @@ module.exports = {
 				return;
 			}
 
-			console.log(data);
 			response.write(data);
 
 			response.end();
 		});
-
-		// end
-		response.end();
 	}
 };

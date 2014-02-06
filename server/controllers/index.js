@@ -19,8 +19,5 @@ module.exports = {
 
 			response.end();
 		});
-
-		// end
-		response.end();
 	}
 };
