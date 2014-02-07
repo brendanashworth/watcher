@@ -48,6 +48,22 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="content">
+					<div class="block-title">
+						<h2>User Disk Usage</h2>
+					</div>
+					<div class="block">
+						<table class="pure-table" id="disk-usage-table">
+							<thead>
+								<tr>Usage</tr>
+								<tr>Location</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 
 			<div class="span-5">
@@ -69,12 +85,21 @@
 					url: '/get/server',
 					type: 'GET',
 					success: function(data) {
+						console.log(data);
 						// load average
 						$("#cpu-1").text(data.load_average.one_min);
 						$("#cpu-2").text(data.load_average.five_min);
 						$("#cpu-3").text(data.load_average.fifteen_min);
 						// num cpu
 						$("#cpu-cores").text(data.num_cpu);
+						// disk usage
+						$("#disk-usage-table > tbody").empty();
+
+						for(var i in data.disk_usage) {
+							//var size = eval('data.disk_usage.'+i+'.size');
+							//var dir = eval('data.disk_usage.'+i+'.dir');
+							$("#disk-usage-table > tbody").append('<tr><td>438MB</td><td>/home/test</td></tr>');
+						}
 					}
 				});
 			}
