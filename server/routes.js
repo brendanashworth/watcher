@@ -5,13 +5,9 @@ module.exports = {
 		'/' : {
 			'controller': 'index'
 		},
-		// network
-		'/network' : {
-			'controller': 'network'
-		},
-		// network status
-		'/network/status': {
-			'controller': 'network/status'
+		// json returns
+		'/get/server': {
+			'controller': 'retrieve'
 		},
 		// 404
 		'404': {

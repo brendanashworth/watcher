@@ -1,15 +1,107 @@
+/* Lets just implement our own grid system */
+.pure-g {
+	padding-top: 40px;
+}
+.span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10 {
+	display: inline-block;
+}
+.pure-g .span-1 {
+	width: 10%;
+}
+.pure-g .span-2 {
+	width: 20%;
+}
+.pure-g .span-3 {
+	width: 30%;
+}
+.pure-g .span-4 {
+	width: 40%;
+}
+.pure-g .span-5 {
+	width: 50%;
+}
+.pure-g .span-6 {
+	width: 60%;
+}
+.pure-g .span-7 {
+	width: 70%;
+}
+.pure-g .span-8 {
+	width: 80%;
+}
+.pure-g .span-9 {
+	width: 90%;
+}
+.pure-g .span-10 {
+	width: 100%;
+}
+.pure-g *,
+.pure-g *:before,
+.pure-g *:after {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+
+	letter-spacing: normal;
+}
+
+/* Horizontal Menu */
+.pure-menu-horizontal {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.content {
+	padding: 0px 20px;
+}
+
+/* Blocks */
 .block {
 	border: 1px solid #FF9200;
+	border-top: none;
 	background: #ddd;
 
 	border-bottom-left-radius: 3px;
 	border-bottom-right-radius: 3px;
+
+	display: block;
+	min-height: 80px;
 }
 
 .block-title {
-	/* gradient #FFAD40 -> #FFC373 */
-	background: #ccc;
+	background: rgb(255,173,64); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,173,64,1) 0%, rgba(255,195,115,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,173,64,1)), color-stop(100%,rgba(255,195,115,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,173,64,1) 0%,rgba(255,195,115,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,173,64,1) 0%,rgba(255,195,115,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,173,64,1) 0%,rgba(255,195,115,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(255,173,64,1) 0%,rgba(255,195,115,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffad40', endColorstr='#ffc373',GradientType=0 ); /* IE6-9 */
 
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
+	border: 1px solid #FF9200;
+	border-bottom: none;
+
+	display: block;
+	min-height: 20px;
+
+	padding: 8px;
+}
+
+.block-title h2 {
+	margin: 0px;
+}
+
+.block-title h2 > small {
+	color: #555;
+}
+
+.block h3,
+.block h2 {
+	text-align: center;
+}
+
+.block h3 {
+	color: #555;
 }
