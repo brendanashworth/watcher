@@ -15,7 +15,10 @@ module.exports = {
 				'five_min': '',
 				'fifteen_min': ''
 			},
-			'num_cpu': ''
+			'num_cpu': '',
+			'disk_usage': {
+
+			}
 		};
 
 		// async.parallel runs all our statistic generating stuff asynchronously, not waiting for eachother. it calls back our function at the end.
@@ -45,6 +48,16 @@ module.exports = {
 
 					callback(null, stdout);
 				});
+			},
+			disk_usage: function(callback) {
+				exec('du -sh /home/* | awk \'{print $1" "$2}\'', function(error, stdout, sterr) {
+					if(error) {
+						console.log('Error running \'du\': '+error);
+						callback(null, 'disk_usage');
+					}
+
+					callback(null, stdout);
+				});
 			}},
 
 			function(err, results) {
@@ -60,6 +73,18 @@ module.exports = {
 					serverData.num_cpu = numcpu + ' cores';
 				} else {
 					serverData.num_cpu = '1 core';
+				}
+
+				// disk usage
+				var diskusage = results['disk_usage'];
+				var lines = diskusage.match(/[^\r\n]+/g);
+				for(var i = 0; i < lines.length; i++) {
+
+					serverData.disk_usage[i] = {
+						'size': lines[i].split(' ')[0],
+						'dir': lines[i].split(' ')[1]
+					};
+
 				}
 
 				var json = JSON.stringify(serverData);
