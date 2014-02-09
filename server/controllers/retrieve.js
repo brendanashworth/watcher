@@ -73,14 +73,6 @@ module.exports = {
 
 					callback(null, stdout);
 				});
-				/*exec('du -sh /home/* | awk \'{print $1" "$2}\'', function(error, stdout, sterr) {
-					if(error) {
-						console.log('Error running \'du\': '+error);
-						callback(null, 'disk_usage');
-					}
-
-					callback(null, stdout);
-				});*/
 			}},
 
 			function(err, results) {
