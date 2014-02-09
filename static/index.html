@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="alert">
-			<p><b>Error refreshing:</b> could not refresh data.</p>
+			<p></p>
 		</div>
 
 		<div class="pure-g">
@@ -140,8 +140,15 @@
 				}
 			}
 
-			function addAlert(alert) {
+			function addAlert(title, alert) {
+				$(".alert")
+					.html('<b>'+title+':</b> '+alert)
+					.show();
+			}
 
+			function hideAlert() {
+				$(".alert")
+					.hide();
 			}
 
 			function refreshData() {
@@ -152,6 +159,7 @@
 					url: '/get/server',
 					type: 'GET',
 					success: function(data) {
+						hideAlert();
 						// load average
 						$("#cpu-1").text(data.load_average.one_min);
 						$("#cpu-2").text(data.load_average.five_min);
@@ -176,7 +184,7 @@
 						}
 					},
 					error: function(xhr, status, error) {
-						alert("Error reloading; "+xhr.responseText);
+						addAlert('Error refreshing', 'Could not refresh statistics. Will reattempt a connection.');
 					}
 				});
 			}
