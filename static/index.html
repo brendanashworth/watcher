@@ -51,14 +51,18 @@
 
 				<div class="content">
 					<div class="block-title">
-						<h2>User Disk Usage</h2>
+						<h2>Disk Usage</h2>
 					</div>
 					<div class="block">
-						<table class="pure-table" id="disk-usage-table">
+						<table class="pure-table pure-table-horizontal block-table" id="disk-usage-table">
 							<thead>
-								<tr>Usage</tr>
-								<tr>Location</tr>
+								<tr>
+									<th>Filesystem</th>
+									<th>Used</th>
+									<th>Available</th>
+								</tr>
 							</thead>
+
 							<tbody>
 							</tbody>
 						</table>
@@ -67,7 +71,34 @@
 			</div>
 
 			<div class="span-5">
-				<h2>Uptime</h2>
+				<div class="content">
+					<div class="block-title">
+						<h2>Network</h2>
+					</div>
+					<div class="block">
+
+					</div>
+				</div>
+
+				<div class="content">
+					<div class="block-title">
+						<h2>RAM Usage</h2>
+					</div>
+					<div class="block block-padded">
+						<div class="span-3">
+							<h2 id="ram-total">...</h2>
+							<h3>Total RAM</h3>
+						</div>
+						<div class="span-3">
+							<h2 id="ram-free">...</h2>
+							<h3>Free RAM</h3>
+						</div>
+						<div class="span-3">
+							<h2 id="ram-used">...</h2>
+							<h3>Used RAM</h3>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div class="span-1"></div>
@@ -76,6 +107,34 @@
 		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script>
 		$(document).ready(function() {
+			function getAmount(data) {
+				data = parseInt(data);
+
+				// go through
+				if(data > 1024 * 10) {
+
+					if(data / 1024 > 1024 * 10) {
+
+						if(data / Math.pow(1024, 2) > 1024 * 10) {
+
+							if(data / Math.pow(1024, 3) > 1024 * 10) {
+								return Math.round(data / Math.pow(1024, 3)) + 'GB';
+							} else {
+								return Math.round(data / Math.pow(1024, 3)) + 'GB';
+							}
+
+						} else {
+							return Math.round(data / Math.pow(1024, 2)) + 'MB';
+						}
+
+					} else {
+						return Math.round(data / 1024) + 'KB';
+					}
+
+				} else {
+					return data + ' bytes';
+				}
+			}
 
 			function refreshData() {
 				console.log('watcher.js - refreshing data');
@@ -85,26 +144,33 @@
 					url: '/get/server',
 					type: 'GET',
 					success: function(data) {
-						console.log(data);
 						// load average
 						$("#cpu-1").text(data.load_average.one_min);
 						$("#cpu-2").text(data.load_average.five_min);
 						$("#cpu-3").text(data.load_average.fifteen_min);
 						// num cpu
 						$("#cpu-cores").text(data.num_cpu);
+						// ram usage
+						var memtotal = parseInt(data.mem_usage.total), memfree = parseInt(data.mem_usage.free), memused = memtotal - memfree;
+						var perfree = Math.round((memfree / memtotal) * 100), perused = Math.round((memused / memtotal) * 100);
+						$("#ram-total").text(getAmount(memtotal));
+						$("#ram-free").text(getAmount(memfree)+' ('+perfree+'%)');
+						$("#ram-used").text(getAmount(memused)+' ('+perused+'%)');
+
 						// disk usage
 						$("#disk-usage-table > tbody").empty();
-
 						for(var i in data.disk_usage) {
-							//var size = eval('data.disk_usage.'+i+'.size');
-							//var dir = eval('data.disk_usage.'+i+'.dir');
-							$("#disk-usage-table > tbody").append('<tr><td>438MB</td><td>/home/test</td></tr>');
+							var system = data.disk_usage[i].system;
+							var used = data.disk_usage[i].used;
+							var available  = data.disk_usage[i].available;
+							var percent = data.disk_usage[i].percent;
+							$("#disk-usage-table > tbody").append('<tr><td>'+system+'</td><td>'+getAmount(used)+'</td><td>'+getAmount(available)+' ('+percent+')</td></tr>');
 						}
 					}
 				});
 			}
 
-			setInterval(refreshData, 10000);
+			setInterval(refreshData, 5000);
 			refreshData();
 		});
 		</script>

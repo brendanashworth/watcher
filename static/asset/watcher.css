@@ -66,6 +66,11 @@
 
 	display: block;
 	min-height: 80px;
+	margin-bottom: 50px;
+}
+
+.block-padded {
+	padding: 20px;
 }
 
 .block-title {
@@ -104,4 +109,22 @@
 
 .block h3 {
 	color: #555;
+}
+
+/* Tables */
+.block > table {
+	width: 100%;
+}
+
+.block-table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.block-table > thead {
+	background: #eee;
+}
+
+.block-table > tbody {
+	background: #fff;
 }

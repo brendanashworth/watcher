@@ -18,6 +18,10 @@ module.exports = {
 			'num_cpu': '',
 			'disk_usage': {
 
+			},
+			'mem_usage': {
+				'total': '',
+				'free': '',
 			}
 		};
 
@@ -29,7 +33,6 @@ module.exports = {
 					// if there was an error
 					if(err) {
 						console.log('Error loading /proc/loadavg: '+err);
-
 						callback(null, 'load_average');
 						return;
 					}
@@ -44,20 +47,40 @@ module.exports = {
 					if(error) {
 						console.log('Error running \'nproc\': '+error);
 						callback(null, 'num_cpu');
+						return;
+					}
+
+					callback(null, stdout);
+				});
+			},
+			mem_usage: function(callback) {
+				exec('cat /proc/meminfo | grep \'Mem\' | awk \'{print $2}\'', function(error, stdout, stderr) {
+					if(error) {
+						console.log('Error running \'cat /proc/meminfo\': '+error);
+						callback(null, 'mem_usage');
+						return;
 					}
 
 					callback(null, stdout);
 				});
 			},
 			disk_usage: function(callback) {
-				exec('du -sh /home/* | awk \'{print $1" "$2}\'', function(error, stdout, sterr) {
+				exec('df | awk \'{if (NR!=1) {print $1" "$3" "$4" "$5}}\'', function(error, stdout, stderr) {
+					if(error) {
+						console.log('Error running \'df\': '+error);
+						callback(null, 'disk_usage');
+					}
+
+					callback(null, stdout);
+				});
+				/*exec('du -sh /home/* | awk \'{print $1" "$2}\'', function(error, stdout, sterr) {
 					if(error) {
 						console.log('Error running \'du\': '+error);
 						callback(null, 'disk_usage');
 					}
 
 					callback(null, stdout);
-				});
+				});*/
 			}},
 
 			function(err, results) {
@@ -79,13 +102,19 @@ module.exports = {
 				var diskusage = results['disk_usage'];
 				var lines = diskusage.match(/[^\r\n]+/g);
 				for(var i = 0; i < lines.length; i++) {
-
 					serverData.disk_usage[i] = {
-						'size': lines[i].split(' ')[0],
-						'dir': lines[i].split(' ')[1]
+						'system': lines[i].split(' ')[0],
+						'used': lines[i].split(' ')[1],
+						'available': lines[i].split(' ')[2],
+						'percent': lines[i].split(' ')[3]
 					};
-
 				}
+
+				// mem usage
+				var memusage = results['mem_usage'];
+				lines = memusage.match(/[^\r\n]+/g);
+				serverData.mem_usage.total = lines[0] * 1024;
+				serverData.mem_usage.free = lines[1] * 1024; // multiply by 1024 to transfer kb -> bytes
 
 				var json = JSON.stringify(serverData);
 				response.write(json);
