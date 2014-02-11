@@ -17,6 +17,7 @@ module.exports = {
 				'fifteen_min': ''
 			},
 			'num_cpu': '',
+			'node_hostname': '',
 			'node_uptime': '',
 			'disk_usage': {
 
@@ -80,6 +81,19 @@ module.exports = {
 					callback(null, stdout);
 				});
 			},
+			hostname: function(callback) {
+				fs.readFile('/etc/hostname', {encoding: 'utf8'}, function(err, data) {
+					// if there was an error
+					if(err) {
+						console.log('Error loading /etc/hostname: '+err);
+						callback(null, 'hostname');
+						return;
+					}
+
+					// call the callback with our data
+					callback(null, data);
+				});
+			},
 			// get the disk partitions and use
 			disk_usage: function(callback) {
 				exec('df | awk \'{if (NR!=1) {print $1" "$3" "$4" "$5}}\'', function(error, stdout, stderr) {
@@ -122,6 +136,10 @@ module.exports = {
 				// uptime
 				var uptime = results['uptime'];
 				serverData.node_uptime = Math.round(uptime);
+
+				// hostname
+				var hostname = results['hostname'];
+				serverData.node_hostname = hostname;
 
 				// mem usage
 				var memusage = results['mem_usage'];

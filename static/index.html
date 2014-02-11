@@ -84,7 +84,7 @@
 							<canvas id="cpu-history" width="450" height="200"></canvas>
 						</div>
 
-						<p><b>Uptime:</b> <span id="node-uptime"></span></p>
+						<p><b>Uptime:</b> <span id="node-uptime">..</span>, <b>Hostname:</b> <span id="node-hostname">..</span></p>
 					</div>
 				</div>
 
@@ -197,6 +197,8 @@
 						$("#cpu-3").text(data.load_average.fifteen_min);
 						// num cpu
 						$("#cpu-cores").text(data.num_cpu);
+						// hostname
+						$("#node-hostname").text(data.node_hostname);
 						// ram usage
 						var memtotal = parseInt(data.mem_usage.total), memfree = parseInt(data.mem_usage.free), memused = memtotal - memfree;
 						var perfree = Math.round((memfree / memtotal) * 100), perused = Math.round((memused / memtotal) * 100);
