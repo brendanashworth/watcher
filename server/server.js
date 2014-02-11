@@ -3,6 +3,7 @@
 var http = require("http");
 var url  = require("url");
 
+var store  = require("./storage/storecpu");
 var routes = require("./routes").routes;
 
 function onRequest(request, response) {
@@ -20,3 +21,6 @@ function onRequest(request, response) {
 }
 
 var server = http.createServer(onRequest).listen(8080);
+
+// set repeating tasks
+setInterval(store.statCPU, 300000);
