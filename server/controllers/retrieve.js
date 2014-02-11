@@ -2,6 +2,7 @@
 var fs    = require("fs");
 var async = require("async");
 var exec  = require("child_process").exec;
+var store = require('../storage/storecpu');
 
 module.exports = {
 	// run the controller
@@ -16,6 +17,7 @@ module.exports = {
 				'fifteen_min': ''
 			},
 			'num_cpu': '',
+			'node_uptime': '',
 			'disk_usage': {
 
 			},
@@ -39,6 +41,7 @@ module.exports = {
 
 					// call the callback with our data
 					callback(null, data);
+					store.addCPU(data.split(' ')[0]);
 				});
 			},
 			// get the number of cpu cores
@@ -53,6 +56,7 @@ module.exports = {
 					callback(null, stdout);
 				});
 			},
+			// get the ram usage
 			mem_usage: function(callback) {
 				exec('cat /proc/meminfo | grep \'Mem\' | awk \'{print $2}\'', function(error, stdout, stderr) {
 					if(error) {
@@ -64,6 +68,19 @@ module.exports = {
 					callback(null, stdout);
 				});
 			},
+			// get the node uptime
+			uptime: function(callback) {
+				exec('cat /proc/uptime | awk \'{print $1}\'', function(error, stdout, stderr) {
+					if(error) {
+						console.log('Error running \'cat /proc/uptime\': '+error);
+						callback(null, 'mem_usage');
+						return;
+					}
+
+					callback(null, stdout);
+				});
+			},
+			// get the disk partitions and use
 			disk_usage: function(callback) {
 				exec('df | awk \'{if (NR!=1) {print $1" "$3" "$4" "$5}}\'', function(error, stdout, stderr) {
 					if(error) {
@@ -101,6 +118,10 @@ module.exports = {
 						'percent': lines[i].split(' ')[3]
 					};
 				}
+
+				// uptime
+				var uptime = results['uptime'];
+				serverData.node_uptime = Math.round(uptime);
 
 				// mem usage
 				var memusage = results['mem_usage'];
