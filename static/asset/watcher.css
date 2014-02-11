@@ -148,3 +148,13 @@
 .block-table > tbody {
 	background: #fff;
 }
+
+/* CPU History */
+.cpu-history {
+	height: 200px;
+}
+
+/* Generic Data Styles */
+.data-calm {
+	color: #333;
+}

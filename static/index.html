@@ -77,10 +77,14 @@
 			<div class="span-5">
 				<div class="content">
 					<div class="block-title">
-						<h2>Network</h2>
+						<h2>General &amp; CPU History</h2>
 					</div>
-					<div class="block">
+					<div class="block block-padded">
+						<div class="cpu-history">
+							<canvas id="cpu-history" width="450" height="200"></canvas>
+						</div>
 
+						<p><b>Uptime:</b> <span id="node-uptime"></span></p>
 					</div>
 				</div>
 
@@ -109,34 +113,61 @@
 		</div>
 
 		<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="//www.chartjs.org/assets/Chart.js"></script>
 		<script>
 		$(document).ready(function() {
+			function initCPUHistoryChart() {
+				var data = {
+					labels: ["1 hour", "2 hours", "3 hours", "4 hours", "5 hours", "6 hours"],
+					datasets: [
+					{
+						fillColor: "#009B95",
+						strokeColor: "#A2EF00",
+						pointColor: "#FD0006",
+						pointStrokeColor: "#fff",
+						data: [34, 37, 39, 24, 12]
+					}
+					]
+				};
+
+				var ctx = $("#cpu-history").get(0).getContext("2d");
+				var chart = new Chart(ctx).Line(data);
+			}
+
 			function getAmount(data) {
 				data = parseInt(data);
 
 				// go through
 				if(data > 1024 * 10) {
-
 					if(data / 1024 > 1024 * 10) {
-
 						if(data / Math.pow(1024, 2) > 1024 * 10) {
-
-							if(data / Math.pow(1024, 3) > 1024 * 10) {
-								return Math.round(data / Math.pow(1024, 3)) + 'GB';
-							} else {
-								return Math.round(data / Math.pow(1024, 3)) + 'GB';
-							}
-
+							return Math.round(data / Math.pow(1024, 3)) + '<span class="data-calm">GB</span>';
 						} else {
-							return Math.round(data / Math.pow(1024, 2)) + 'MB';
+							return Math.round(data / Math.pow(1024, 2)) + '<span class="data-calm">MB</span>';
 						}
-
 					} else {
-						return Math.round(data / 1024) + 'KB';
+						return Math.round(data / 1024) + '<span class="data-calm">KB</span>';
 					}
-
 				} else {
-					return data + ' bytes';
+					return data + ' <span class="data-calm">bytes</span>';
+				}
+			}
+
+			function getAmountInTime(data) {
+				data = parseInt(data);
+
+				if(data > 60) {
+					if(data / 60 > 60) {
+						if(data / Math.pow(60, 2) > 60) {
+							return Math.round(data / (Math.pow(60, 2) * 24)) + ' days';
+						} else {
+							return Math.round(data / Math.pow(60, 2)) + ' hours';
+						}
+					} else {
+						return Math.round(data / 60) + ' minutes';
+					}
+				} else {
+					return data + ' seconds';
 				}
 			}
 
@@ -169,9 +200,9 @@
 						// ram usage
 						var memtotal = parseInt(data.mem_usage.total), memfree = parseInt(data.mem_usage.free), memused = memtotal - memfree;
 						var perfree = Math.round((memfree / memtotal) * 100), perused = Math.round((memused / memtotal) * 100);
-						$("#ram-total").text(getAmount(memtotal));
-						$("#ram-free").text(getAmount(memfree)+' ('+perfree+'%)');
-						$("#ram-used").text(getAmount(memused)+' ('+perused+'%)');
+						$("#ram-total").html(getAmount(memtotal));
+						$("#ram-free").html(getAmount(memfree)+' ('+perfree+'%)');
+						$("#ram-used").html(getAmount(memused)+' ('+perused+'%)');
 
 						// disk usage
 						$("#disk-usage-table > tbody").empty();
@@ -182,6 +213,9 @@
 							var percent = data.disk_usage[i].percent;
 							$("#disk-usage-table > tbody").append('<tr><td>'+system+'</td><td>'+getAmount(used)+'</td><td>'+getAmount(available)+' ('+percent+')</td></tr>');
 						}
+
+						// uptime
+						$("#node-uptime").text(getAmountInTime(data.node_uptime));
 					},
 					error: function(xhr, status, error) {
 						addAlert('Error refreshing', 'Could not refresh statistics. Will reattempt a connection.');
@@ -191,6 +225,7 @@
 
 			setInterval(refreshData, 5000);
 			refreshData();
+			initCPUHistoryChart();
 		});
 		</script>
 	</body>
