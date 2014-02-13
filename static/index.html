@@ -225,6 +225,13 @@
 				});
 			}
 
+			$(".block-title")
+				.dblclick(function(event) {
+					event.preventDefault();
+
+					$(this).next(".block").toggle();
+				});
+
 			setInterval(refreshData, 5000);
 			refreshData();
 			initCPUHistoryChart();
