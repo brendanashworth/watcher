@@ -229,7 +229,19 @@
 				.dblclick(function(event) {
 					event.preventDefault();
 
-					$(this).next(".block").toggle();
+					var obj = $(this).next('.block');
+
+					if(obj.attr('data-shown') === 'true') {
+						obj.animate({
+							'height': '0px'
+						}, 350);
+						obj.attr('data-shown', 'false');
+					} else {
+						obj.animate({
+							'height': 'auto'
+						}, 350);
+						obj.attr('data-shown', 'true');
+					}
 				});
 
 			setInterval(refreshData, 5000);
