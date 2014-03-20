@@ -1,0 +1,20 @@
+{
+  "author": "boboman13 <rich@safe-node.com>",
+  "name": "watcher",
+  "version": "0.1.1",
+  "description": "Simple server network management utility; manage and get alerts from multiple servers with a distributed application - all from a simple web UI.",
+  "main": "watcher.js",
+  "dependencies": {
+    "async": "~0.2.10",
+    "js-yaml": "~3.0.2",
+    "mustache": "~0.8.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boboman13/watcher.js.git"
+  },
+  "license": "GNU General Public License v2",
+  "readmeFilename": "README.md",
+  "gitHead": "4ff3a922c166a90207902f9a9a2367ed5f6cf9b6"
+}
