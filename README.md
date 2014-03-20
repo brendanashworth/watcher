@@ -11,6 +11,7 @@ $ git clone https://github.com/boboman13/watcher.js.git
 
 $ npm install async
 $ npm install js-yaml
+$ npm install mustache
 
 $ node watcher.js
 ```
