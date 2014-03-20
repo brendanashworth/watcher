@@ -1,0 +1,3 @@
+settings:
+    # Possible server types: 'daemon', 'frontend'
+    server_type: 'frontend'
