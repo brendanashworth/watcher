@@ -12,11 +12,16 @@ function startServer() {
 		type = 'frontend';
 	}
 
+	config.getServers();
+
 	// load
 	console.log("Loading server type: " + type);
 	if (type == 'frontend') {
+		// frontend also starts a server
 		var frontend = require("./frontend/server");
+		require("./daemon/server");
 	} else if (type == 'daemon') {
+		// just the daemon
 		var daemon = require("./daemon/server");
 	}
 }

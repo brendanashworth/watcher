@@ -1,5 +1,7 @@
 // index.js is a controller
 var fs = require("fs");
+var config = require("../../config");
+var mustache = require("mustache");
 
 module.exports = {
 	// run the controller
@@ -15,8 +17,10 @@ module.exports = {
 				return;
 			}
 
-			response.write(data);
+			//var servers = config.getServers();
+			//var output = mustache.render(data, demoData);
 
+			response.write(data);
 			response.end();
 		});
 	}
