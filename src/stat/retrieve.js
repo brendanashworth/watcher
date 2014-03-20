@@ -1,15 +1,11 @@
-// retrieve.js is a controller
+// retrieve.js, stats the server
 var fs    = require("fs");
 var async = require("async");
 var exec  = require("child_process").exec;
 var store = require('../storage/storecpu');
 
 module.exports = {
-	// run the controller
-	run: function(request, response) {
-		// write header
-		response.writeHeader(200, {'Content-Type': 'application/json'});
-
+	stat: function(callback) {
 		var serverData = {
 			'load_average': {
 				'one_min': '',
@@ -147,10 +143,7 @@ module.exports = {
 				serverData.mem_usage.total = lines[0] * 1024;
 				serverData.mem_usage.free = lines[1] * 1024; // multiply by 1024 to transfer kb -> bytes
 
-				var json = JSON.stringify(serverData);
-				response.write(json);
-
-				response.end();
+				callback(serverData);
 			});
 	}
 };

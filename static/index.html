@@ -191,6 +191,7 @@
 					type: 'GET',
 					success: function(data) {
 						hideAlert();
+						data = JSON.parse(data);
 						// load average
 						$("#cpu-1").text(data.load_average.one_min);
 						$("#cpu-2").text(data.load_average.five_min);

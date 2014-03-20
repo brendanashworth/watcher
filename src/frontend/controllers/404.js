@@ -8,7 +8,7 @@ module.exports = {
 		response.writeHeader(404, {'Content-Type': 'text/html'});
 
 		// read /static/network.html
-		fs.readFile(__dirname + '/../../static/404.html', function(err, data) {
+		fs.readFile(__dirname + '/../../../static/404.html', function(err, data) {
 			if (err) {
 				console.log('Error occured: could not access file ~/static/404.html');
 				response.end();
