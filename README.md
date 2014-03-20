@@ -7,10 +7,10 @@ The software is written in Node.js. It is **still in development**.
 
 ### Installation
 ```bash
-$ npm install async
-$ npm install rethinkdb
-
 $ git clone https://github.com/boboman13/watcher.js.git
+
+$ npm install async
+$ npm install js-yaml
 
 $ node watcher.js
 ```
