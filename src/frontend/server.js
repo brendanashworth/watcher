@@ -3,7 +3,7 @@ var http = require("http");
 var url  = require("url");
 
 var store  = require("../storage/storecpu");
-var routes = require("../routes").routes;
+var routes = require("./routes").routes;
 
 function onRequest(request, response) {
 	var controller, path = request.url;
