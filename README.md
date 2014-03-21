@@ -9,10 +9,7 @@ The software is written in Node.js. It is **still in development**.
 ### Installation
 ```bash
 $ git clone https://github.com/boboman13/watcher.js.git
-
-$ npm install async
-$ npm install js-yaml
-$ npm install mustache
+$ npm install
 
 $ node watcher.js
 ```
