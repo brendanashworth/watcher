@@ -1,8 +1,7 @@
 // routes.js
-
 module.exports = {
 	routes : {
-		'/' : {
+		'/': {
 			'controller': 'index'
 		},
 		// json returns
@@ -14,7 +13,7 @@ module.exports = {
 			'controller': '404'
 		},
 		// assets
-		'/asset/watcher.css': {
+		'/asset/(.)+': {
 			'controller': 'asset'
 		}
 	}

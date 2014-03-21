@@ -2,6 +2,7 @@
 var fs = require("fs");
 var url = require("url");
 var path = require("path");
+var mime = require("mime");
 
 module.exports = {
 	// run the controller
@@ -27,8 +28,11 @@ module.exports = {
 				return;
 			}
 
-			response.writeHead(200);
-			response.write(data);
+			console.log(path);
+			var mimetype = mime.lookup(path);
+
+			response.writeHeader(200, mimetype);
+			response.write(data, "binary");
 			response.end();
 
 			return;

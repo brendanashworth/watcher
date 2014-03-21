@@ -6,17 +6,21 @@ var store  = require("../storage/storecpu");
 var routes = require("./routes").routes;
 
 function onRequest(request, response) {
-	var controller, path = request.url;
+	var controller = require("./controllers/" + routes['404'].controller);
+	var path = request.url;
 
 	// check if a route exists for this path
-	if(routes[path]) {
-		controller = require("./controllers/" + routes[path].controller);
-		controller.run(request, response);
-	} else {
-		// route not defined. 404
-		controller = require("./controllers/" + routes['404'].controller);
-		controller.run(request, response);
+	var keys = Object.keys(routes);
+	for (var i = 0; i < keys.length; i++) {
+		var regex = new RegExp(keys[i]);
+
+		if(regex.test(request.url)) {
+			var contpath = routes[keys[i]];
+			controller = require("./controllers/" + contpath.controller);
+		}
 	}
+
+	controller.run(request, response);
 }
 
 var server = http.createServer(onRequest).listen(8080);
