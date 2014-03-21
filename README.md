@@ -9,7 +9,8 @@ The software is written in Node.js. It is **still in development**.
 ### Installation
 ```bash
 $ git clone https://github.com/boboman13/watcher.js.git
+$ cd watcher.js
 $ npm install
 
-$ node watcher.js
+$ node watcher
 ```
