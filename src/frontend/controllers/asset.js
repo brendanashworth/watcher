@@ -28,10 +28,10 @@ module.exports = {
 				return;
 			}
 
-			console.log(path);
 			var mimetype = mime.lookup(path);
+			console.log(mimetype);
 
-			response.writeHeader(200, mimetype);
+			response.writeHeader(200, {'Content-Type': mimetype});
 			response.write(data, "binary");
 			response.end();
 
