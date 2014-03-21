@@ -29,7 +29,6 @@ module.exports = {
 			}
 
 			var mimetype = mime.lookup(path);
-			console.log(mimetype);
 
 			response.writeHeader(200, {'Content-Type': mimetype});
 			response.write(data, "binary");
