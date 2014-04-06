@@ -1,2 +1,6 @@
+# NPM and compiled .js
 /node_modules
 /dist
+
+# Configuration
+app.yml
