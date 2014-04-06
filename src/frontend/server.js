@@ -4,6 +4,7 @@ var url  = require("url");
 
 var store  = require("../storage/storecpu");
 var routes = require("./routes").routes;
+var config = require("../config");
 
 function onRequest(request, response) {
 	var controller = require("./controllers/" + routes['404'].controller);
@@ -23,7 +24,7 @@ function onRequest(request, response) {
 	controller.run(request, response);
 }
 
-var server = http.createServer(onRequest).listen(8080);
+var server = http.createServer(onRequest).listen(config.getFrontendSettings().port);
 
 // set repeating tasks
 setInterval(store.statCPU, 300000);

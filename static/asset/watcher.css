@@ -2,6 +2,9 @@
 .pure-g {
 	padding-top: 40px;
 }
+.pure-g > div {
+	width: 100%;
+}
 .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10 {
 	display: inline-block;
 }
@@ -51,6 +54,10 @@
 	margin-right: auto;
 }
 
+.pure-menu-horizontal li {
+	margin: 8px;
+}
+
 .content {
 	padding: 0px 20px;
 }
@@ -67,6 +74,12 @@
 	display: block;
 	min-height: 80px;
 	margin-bottom: 50px;
+}
+
+.block canvas {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .block-padded {

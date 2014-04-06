@@ -9,7 +9,7 @@ module.exports = {
 		response.writeHeader(200, {'Content-Type': 'text/html'});
 
 		// read /static/network.html
-		fs.readFile(__dirname + '/../../../static/index.html', {encoding: 'utf8'}, function(err, data) {
+		fs.readFile(__dirname + '/../../../static/angular.html', {encoding: 'utf8'}, function(err, data) {
 			if (err) {
 				console.log('Error occured: could not access file ~/static/index.html');
 				response.end();

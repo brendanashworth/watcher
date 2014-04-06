@@ -17,5 +17,15 @@ module.exports = {
 	getServers: function() {
 		var file = getConfigContents();
 		return file.servers;
+	},
+
+	getDaemonSettings: function() {
+		var file = getConfigContents();
+		return file.settings.daemon;
+	},
+
+	getFrontendSettings: function() {
+		var file = getConfigContents();
+		return file.settings.frontend;
 	}
 };

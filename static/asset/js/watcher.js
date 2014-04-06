@@ -1,20 +1,47 @@
 $(document).ready(function() {
+	var cpuData = {};
+	var chartOptions = {
+		pointDot: false,
+		animation: false
+	}
 	function initCPUHistoryChart() {
-		var data = {
-			labels: ["3 hr", "2.5 hr", "2 hr", "1.5 hr", "1 hr", ".5 hr"],
-			datasets: [
-			{
-				fillColor: "#009B95",
-				strokeColor: "#A2EF00",
-				pointColor: "#FD0006",
-				pointStrokeColor: "#fff",
-				data: [1.28, 1.02, 0.95, 1.39, 1.21]
-			}
-			]
-		};
+		// parse through data
+		var data = cpuData;
+		var time = new Date().getTime();
 
-		var ctx = $("#cpu-history").get(0).getContext("2d");
-		var chart = new Chart(ctx).Line(data);
+		var keys = [],
+			values = [];
+
+		for (var property in data) {
+			if (!data.hasOwnProperty(property)) {
+				continue;
+			}
+
+			// is it older than 15 minutes
+			if(property < time - 900000) {
+				continue;
+			}
+
+			keys.push(' ');
+			values.push(data[property]);
+		}
+
+		$.getJSON("/asset/json/graph.json", function(graph) {
+			graph.datasets[0].data = values;
+			graph.labels = keys;
+
+			var ctx = $("#cpu-history").get(0).getContext("2d");
+			var chart = new Chart(ctx).Line(graph, chartOptions);
+		});
+	}
+
+	function parseCPUData() {
+		var data = [];
+		for(var i = 0; i < cpuData.length; i++) {
+			data[i] = cpuData[i];
+		}
+
+		cpuData = data;
 	}
 
 	function getAmount(data) {
@@ -70,7 +97,7 @@ $(document).ready(function() {
 
 		// perform ajax
 		$.ajax({
-			url: '/get/server',
+			url: '/get/server/1',
 			type: 'GET',
 			success: function(data) {
 				hideAlert();
@@ -102,6 +129,10 @@ $(document).ready(function() {
 
 				// uptime
 				$("#node-uptime").text(getAmountInTime(data.node_uptime));
+
+				// the graph
+				cpuData = data.pastCPU;
+				initCPUHistoryChart();
 			},
 			error: function(xhr, status, error) {
 				addAlert('Error refreshing', 'Could not refresh statistics. Will reattempt a connection.');
@@ -109,26 +140,6 @@ $(document).ready(function() {
 		});
 	}
 
-	$(".block-title")
-		.dblclick(function(event) {
-			event.preventDefault();
-
-			var obj = $(this).next('.block');
-
-			if(obj.attr('data-shown') === 'true') {
-				obj.animate({
-					'height': '0px'
-				}, 350);
-				obj.attr('data-shown', 'false');
-			} else {
-				obj.animate({
-					'height': 'auto'
-				}, 350);
-				obj.attr('data-shown', 'true');
-			}
-		});
-
 	setInterval(refreshData, 5000);
 	refreshData();
-	initCPUHistoryChart();
 });

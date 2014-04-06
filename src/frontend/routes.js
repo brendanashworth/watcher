@@ -5,8 +5,11 @@ module.exports = {
 			'controller': 'index'
 		},
 		// json returns
-		'/get/server': {
+		'/get/server/(.)+': {
 			'controller': 'retrieve'
+		},
+		'/get/servers': {
+			'controller': 'servers'
 		},
 		// 404
 		'404': {
