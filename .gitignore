@@ -3,4 +3,5 @@
 /dist
 
 # Configuration
-app.yml
+/app.yml
+
