@@ -2,13 +2,21 @@ settings:
     # Possible server types: 'daemon', 'frontend'
     # When running frontend, a daemon will also run
     server_type: 'frontend'
+    daemon:
+        port: 3137
+        host: "0.0.0.0"
+    frontend:
+        port: 8080
+# This is not necessary if you are only running a daemon off this machine.
 servers:
     # Example server
     1:
         name: "Frontend Server"
         host: "127.0.0.1"
         port: "3137"
+        id: 1
     2:
         name: "External Daemon"
-        host: "255.255.255.255"
+        host: "localhost"
         port: "3137"
+        id: 2
