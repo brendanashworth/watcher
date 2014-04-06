@@ -8,7 +8,8 @@ node_js:
   - "0.6"
 
 before_install:
-  - "npm run"
+  - "npm install -g coffee-script"
+  - "npm run compile"
 
 notifications:
   email: false
