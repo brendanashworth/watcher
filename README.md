@@ -31,6 +31,11 @@ Compiling watcher.js requires [CoffeeScript](http://coffeescript.org).
 $ npm -g install coffee-script
 $ npm run compile
 ```
+Running `npm run compile` runs the following script:
+```bash
+$ coffee -co dist/ src/
+```
+This calls the CoffeeScript compiler to compile all .coffee files in `src` into .js files, and place them into their respective `dist` position.
 
 ### Contributing
 Contributing to watcher.js is easy. Simply fork the repository, commit changes to your own repository, and then pull request the changes. Here is a contributing FAQ.
