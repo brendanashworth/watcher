@@ -5,3 +5,5 @@
 # Configuration
 /app.yml
 
+# Testing
+/test/npm-debug.log
