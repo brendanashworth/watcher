@@ -5,6 +5,9 @@ past = {}
 	# '1': '0.01', - example
 
 addCPU = (cpu) ->
+	if !cpu?
+		throw new Error 'CPU paramater is necessary'
+
 	date   = new Date().getTime()
 	cpu    = parseFloat(cpu)
 	canlog = true
@@ -20,7 +23,6 @@ addCPU = (cpu) ->
 		past[date] = cpu
 
 statCPU = ->
-	console.log 'Statting CPU...'
 	# read file
 	fs.readFile '/proc/loadavg', {encoding: 'utf8'}, (err, data) ->
 		# if there was an error
