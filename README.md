@@ -51,3 +51,30 @@ No! If you find an issue or want a feature, create a [new issue](https://github.
 > Why is watcher.js written in CoffeeScript? Why not just Javascript?
 
 CoffeeScript has an eloquent syntax and favors readability. Not the entire app is written in CoffeeScript, but the language helps cut down on app size and code length by removing trivial characters necessary with Javascript.
+
+> What can I do to contribute?
+
+Besides general code additions, you can write *unit tests*.
+
+### Unit Tests
+Unit testing setup:
+```bash
+$ npm install -g mocha
+$ npm run compile
+```
+Initiating unit test module:
+```bash
+$ npm test
+```
+Running `npm test` runs the `mocha` testing library along with the CoffeeScript compiler.
+
+We want to try and get every part of our code as a unit test! Try and contribute a unit test module.
+
+### Writing Unit Tests
+Use the `/test/src_stat_retrieve.coffee` unit test as an example.
+
+The file naming structure is after the directory location in `src`, not `dist`. For example: it is located in `/src/stat/retrieve.coffee`, so the file is named `src_stat_retrieve.coffee`.
+
+The unit test contains every single function within the file and runs multiple tests on the function. Running multiple tests on the function *is not necessary*, but it helps debug when a test fails.
+
+It is good to put comments in your unit tests! Though CoffeeScript, Mocha, and Chai are all very verbose, unit tests are for humans, not machines!

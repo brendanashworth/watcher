@@ -9,13 +9,15 @@
     "js-yaml": "~3.0.2",
     "mime": "~1.2.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "*"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/boboman13/watcher.js.git"
   },
   "scripts": {
-    "test": "echo \"No tests defined\"",
+    "test": "mocha --compilers coffee:coffee-script/register",
     "compile": "coffee -co dist/ src/"
   },
   "license": "GNU General Public License v2",

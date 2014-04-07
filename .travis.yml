@@ -8,6 +8,7 @@ node_js:
   - "0.6"
 
 before_install:
+  - "npm install -g mocha"
   - "npm install -g coffee-script"
   - "npm run compile"
 
