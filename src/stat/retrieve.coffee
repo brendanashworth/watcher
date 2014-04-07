@@ -69,7 +69,7 @@ module.exports =
 						callback null, data
 
 				disk_usage: (callback) ->
-					exec 'df | awk \'{if (NR!=1) {print $1" "$3" "$4" "$5}}\'', (err, stdout, stderr) ->
+					exec 'df -h | awk \'{if (NR!=1) {print $1" "$3" "$4" "$5}}\'', (err, stdout, stderr) ->
 						if err
 							console.log "Error running \'df\': #{err}"
 							callback null, 'disk_usage'
