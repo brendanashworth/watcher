@@ -2,7 +2,7 @@
 config = require './config'
 
 # start server
-startServer = ->
+start = ->
 	# get type
 	type = config.getServerType()
 
@@ -27,4 +27,4 @@ startServer = ->
 # exports
 module.exports =
 	start: ->
-		startServer()
+		start()
