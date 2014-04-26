@@ -1,85 +1,69 @@
-<div class="span-1"></div>
-
-<div class="span-3">
-	<div class="content">
-		<div class="block-title">
-			<h2>CPU Usage <small id="cpu-cores">{{ server.cores }}</small></h2>
-		</div>
-		<div class="block">
-			<div class="span-3">
-				<h2 id="cpu-1">{{ server.loadavg.one }}</h2>
-				<h3>1 min</h3>
-			</div>
-			<div class="span-3">
-				<h2 id="cpu-2">{{ server.loadavg.five }}</h2>
-				<h3>5 min</h3>
-			</div>
-			<div class="span-3">
-				<h2 id="cpu-3">{{ server.loadavg.fifteen }}</h2>
-				<h3>15 min</h3>
-			</div>
-		</div>
-	</div>
-
-	<div class="content">
-		<div class="block-title">
-			<h2>Disk Usage</h2>
-		</div>
-		<div class="block">
-			<table class="pure-table pure-table-horizontal block-table" id="disk-usage-table">
-				<thead>
-					<tr>
-						<th>Filesystem</th>
-						<th>Used</th>
-						<th>Available</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr ng-repeat="system in server.disks">
-						<td>{{ system.system }}</td>
-						<td>{{ system.used }}</td>
-						<td>{{ system.percent }}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+<div class="col-sm-3 col-md-2 sidebar">
+	<ul class="nav nav-sidebar">
+		<li class="active"><a href="#overview">Overview</a></li>
+		<li><a href="#disk">Disk</a></li>
+		<li><a href="#cpu">CPU</a></li>
+		<li><a href="#uptime">Uptime</a></li>
+	</ul>
 </div>
+<!-- Overview -->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 id="overview">Overview</h1>
 
-<div class="span-5">
-	<div class="content">
-		<div class="block-title">
-			<h2>General &amp; CPU History</h2>
-		</div>
-		<div class="block block-padded">
-			<div class="cpu-history">
-				<canvas id="cpu-history" width="450" height="200"></canvas>
+	<div class="row placeholders">
+		<div class="col-xs-6 col-sm-4 placeholder">
+			<div id="js-1-free-ram">
+
 			</div>
+			<h4>Free RAM</h4>
+		</div>
+		<div class="col-xs-6 col-sm-4 placeholder">
+			<div id="js-1-cpu">
 
-			<p><b>Uptime:</b> <span id="node-uptime">{{ server.uptime }}</span>, <b>Hostname:</b> <span id="node-hostname">{{ server.hostname }}</span></p>
+			</div>
+			<h4>Used CPU</h4>
+		</div>
+		<div class="col-xs-6 col-sm-4 placeholder">
+			<div id="js-1-used-ram">
+
+			</div>
+			<h4>Used RAM</h4>
 		</div>
 	</div>
-
-	<div class="content">
-		<div class="block-title">
-			<h2>RAM Usage</h2>
-		</div>
-		<div class="block block-padded">
-			<div class="span-3">
-				<h2 id="ram-total">{{ ram.total }}</h2>
-				<h3>Total RAM</h3>
-			</div>
-			<div class="span-3">
-				<h2 id="ram-free">{{ ram.free }}</h2>
-				<h3>Free RAM</h3>
-			</div>
-			<div class="span-3">
-				<h2 id="ram-used">{{ ram.used }}</h2>
-				<h3>Used RAM</h3>
-			</div>
-		</div>
-	</div>
+	<hr />
 </div>
-
-<div class="span-1"></div>
+<!-- Disk -->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 id="disk">Disk</h1>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Device</th>
+				<th>Mount</th>
+				<th>Total</th>
+				<th>Used</th>
+				<th>Free</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>/dev/vda</td>
+				<td>/</td>
+				<td>20G</td>
+				<td>8.9G (48%)</td>
+				<td>9.8G</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr />
+</div>
+<!-- CPU -->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 id="cpu">CPU</h1>
+	<hr />
+</div>
+<!-- Uptime -->
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 id="uptime">Uptime</h1>
+	<hr />
+</div>

@@ -1,123 +1,47 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="watcherjsApp">
+<html lang="en" ng-app="watcherApplication">
 	<head>
-		<title>Network Monitor (watcher.js)</title>
-
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-		<link rel="stylesheet" href="/asset/watcher.css">
-		<meta author="boboman13" />
+		<title>Network Management »» watcher.js</title>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/asset/css/dashboard.css">
 	</head>
 
 	<body>
-		<div class="pure-g">
-			<div class="span-2"></div>
-			<div class="span-6">
-				<div class="pure-menu pure-menu-open pure-menu-horizontal">
-					<ul>
-						<li><a href="#" class="pure-button pure-button-active" title="Dedicated database node; San Jose">MySQL</a></li>
-						<li><a href="#" class="pure-button" title="Dedicated frontend web node; San Jose">Website</a></li>
-						<li><a href="#" class="pure-button" title="Static file delivery node; New York">CDN (New York)</a></li>
-						<li><a href="#" class="pure-button" title="Static file delivery node; Great Britain">CDN (Great Britain)</a></li>
-						<li><a href="#" class="pure-button" title="All node backup server; San Antonio">Backup</a></li>
-						<li><a href="#" class="pure-button" title="Development, test node; San Antonio">Dev Node</a></li>
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">watcher.js</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="#/server/1">Server #1</a></li>
+						<li><a href="#/server/2">Server #2</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="span-2"></div>
 		</div>
 
-		<div class="alert">
-			<p></p>
-		</div>
-
-		<div class="pure-g" ng-controller="BodyController">
-			<div class="span-1"></div>
-			
-			<div class="span-3">
-				<div class="content">
-					<div class="block-title">
-						<h2>CPU Usage <small id="cpu-cores"></small></h2>
-					</div>
-					<div class="block">
-						<div class="span-3">
-							<h2 id="cpu-1">...</h2>
-							<h3>1 min</h3>
-						</div>
-						<div class="span-3">
-							<h2 id="cpu-2">...</h2>
-							<h3>5 min</h3>
-						</div>
-						<div class="span-3">
-							<h2 id="cpu-3">...</h2>
-							<h3>15 min</h3>
-						</div>
-					</div>
-				</div>
-
-				<div class="content">
-					<div class="block-title">
-						<h2>Disk Usage</h2>
-					</div>
-					<div class="block">
-						<table class="pure-table pure-table-horizontal block-table" id="disk-usage-table">
-							<thead>
-								<tr>
-									<th>Filesystem</th>
-									<th>Used</th>
-									<th>Available</th>
-								</tr>
-							</thead>
-
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-				</div>
+		<div class="container-fluid" ng-controller="OverviewController">
+			<div class="row" ng-view>
 			</div>
-
-			<div class="span-5">
-				<div class="content">
-					<div class="block-title">
-						<h2>General &amp; CPU History</h2>
-					</div>
-					<div class="block block-padded">
-						<div class="cpu-history">
-							<canvas id="cpu-history" width="450" height="200"></canvas>
-						</div>
-
-						<p><b>Uptime:</b> <span id="node-uptime">..</span>, <b>Hostname:</b> <span id="node-hostname">..</span></p>
-					</div>
-				</div>
-
-				<div class="content">
-					<div class="block-title">
-						<h2>RAM Usage</h2>
-					</div>
-					<div class="block block-padded">
-						<div class="span-3">
-							<h2 id="ram-total">...</h2>
-							<h3>Total RAM</h3>
-						</div>
-						<div class="span-3">
-							<h2 id="ram-free">...</h2>
-							<h3>Free RAM</h3>
-						</div>
-						<div class="span-3">
-							<h2 id="ram-used">...</h2>
-							<h3>Used RAM</h3>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="span-1"></div>
 		</div>
 
-		<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-		<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.2/angular.min.js"></script>-->
-		<!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.2/angular-route.js"></script>-->
-		<script type="text/javascript" src="//www.chartjs.org/assets/Chart.js"></script>
-		<script type="text/javascript" src="asset/js/watcher.js"></script>
-		<!--<script type="text/javascript" src="asset/js/app.js"></script>-->
+		<!-- CDN Libraries -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.js"></script>
+		<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
+
+		<!-- Internal Libraries -->
+		<script type="text/javascript" src="/asset/js/circles.js"></script>
+
+		<!-- Internal Angular.js app files -->
+		<script type="text/javascript" src="/asset/js/app.js"></script>
 	</body>
 </html>
