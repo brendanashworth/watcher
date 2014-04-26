@@ -69,7 +69,7 @@ module.exports =
 						callback null, data
 
 				disk_usage: (callback) ->
-					exec 'df -h | awk \'{if (NR!=1) {print $1" "$3" "$4" "$5}}\'', (err, stdout, stderr) ->
+					exec 'df -h | awk \'{if (NR!=1) {print $1" "$2" "$3" "$4" "$5" "$6}}\'', (err, stdout, stderr) ->
 						if err
 							console.log "Error running \'df\': #{err}"
 							callback null, 'disk_usage'
@@ -95,9 +95,11 @@ module.exports =
 				for line in lines
 					serverData.disk_usage[lines.indexOf(line)] =
 						'system': line.split(' ')[0]
-						'used': line.split(' ')[1]
-						'available': line.split(' ')[2]
-						'percent': line.split(' ')[3]
+						'total': line.split(' ')[1]
+						'used': line.split(' ')[2]
+						'free': line.split(' ')[3]
+						'percent': line.split(' ')[4]
+						'mount': line.split(' ')[5]
 
 				# uptime
 				uptime = results['uptime']
