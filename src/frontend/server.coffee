@@ -5,7 +5,7 @@ url  = require 'url'
 buffer = require 'buffer'
 
 store  = require '../storage/storecpu'
-routes = require('./routes').routes
+routes = require './routes'
 config = require '../config'
 
 data = {}
