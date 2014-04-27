@@ -83,10 +83,7 @@ module.exports =
 				serverData.load_average.fifteen_min = loadavg[2]
 
 				# numcpu
-				numcpu = results['num_cpu'];
-				serverData.num_cpu = numcpu + ' core'
-				if numcpu > 1
-					serverData.num_cpu = serverData.num_cpu + 's'
+				serverData.num_cpu = results['num_cpu'];
 
 				# disk usage
 				diskusage = results['disk_usage']
