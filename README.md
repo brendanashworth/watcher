@@ -4,7 +4,7 @@ watcher.js
 
 > Watcher.js is a server management tool, designed to enable a system admin (or anyone that uses multiple servers) to keep a watch on their servers. It keeps track of uptime, network connections, speed, and more.
 
-The software is written in [Node.js](http://nodes.org "NodeJS"), with a CoffeeScript backend. The frontend is composed of an AngularJS application, written in pure JS.
+The software is written in [Node.js](http://nodes.org "NodeJS"), with a [CoffeeScript](http://coffeescript.org "CoffeeScript") backend. The frontend is composed of an [AngularJS](https://angularjs.org/) application, written in pure JavaScript.
 
 ![screenshot of watcher.js](http://upimg.me/724128926c73ff30ffacb1ab30996b51.png)
 
