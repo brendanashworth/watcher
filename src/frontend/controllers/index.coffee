@@ -2,9 +2,7 @@
 fs = require 'fs'
 config = require '../../config'
 
-module.exports =
-	# run the controller
-	run: (request, response) ->
+module.exports = (request, response) ->
 		# write header
 		response.writeHeader 200, {'Content-Type': 'text/html'}
 

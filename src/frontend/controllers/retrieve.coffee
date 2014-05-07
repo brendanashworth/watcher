@@ -3,13 +3,11 @@ net = require 'net'
 url = require 'url'
 config = require '../../config'
 
-module.exports =
-	# run the controller
-	run: (request, response) ->
+module.exports = (request, response) ->
 		path = url.parse(request.url).pathname
 		id = path.substring(12, path.length)
 
-		if !config.getServers()[id]
+		if not config.getServers()[id]
 			response.writeHead 404
 			response.end()
 			return

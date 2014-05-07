@@ -4,9 +4,7 @@ url  = require 'url'
 path = require 'path'
 mime = require 'mime'
 
-module.exports =
-	# run the controller
-	run: (request, response) ->
+module.exports = (request, response) ->
 		# get the file uri
 		uri = url.parse request.url
 		uri = uri.pathname

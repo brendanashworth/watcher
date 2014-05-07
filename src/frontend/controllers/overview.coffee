@@ -3,9 +3,7 @@ net = require 'net'
 url = require 'url'
 config = require '../../config'
 
-module.exports =
-	# run the controller
-	run: (request, response) ->
+module.exports = (request, response) ->
 		servers = config.getServers()
 		timeouts = []
 		connections = []

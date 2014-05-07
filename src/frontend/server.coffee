@@ -21,7 +21,7 @@ onRequest = (request, response) ->
 			contpath = routes[key];
 			controller = require './controllers/' + contpath.controller
 
-	controller.run request, response
+	controller request, response
 	return
 
 server = http.createServer onRequest

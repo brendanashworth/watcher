@@ -1,9 +1,7 @@
 # network is a controller
-fs = require("fs");
+fs = require 'fs'
 
-module.exports =
-	# run the controller
-	run: (request, response) ->
+module.exports = (request, response) ->
 		# write header
 		response.writeHeader 404, {'Content-Type': 'text/html'}
 
