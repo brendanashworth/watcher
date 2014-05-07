@@ -1,31 +1,18 @@
 # frontend server.js
-http = require 'http'
-net  = require 'net'
-url  = require 'url'
-buffer = require 'buffer'
-
-store  = require '../storage/storecpu'
-routes = require './routes'
 config = require '../config'
+express = require 'express'
 
-onRequest = (request, response) ->
-	controller = require './controllers/' + routes['404'].controller
-	path = request.url
+# Initiate application.
+app = express()
 
-	# check if a route exists for this path
-	keys = Object.keys routes
-	for key, value in keys
-		regex = new RegExp(key)
+# Setup ExpressJS's routes.
+app.get '/', require('./controllers/index')
 
-		if regex.test request.url
-			contpath = routes[key];
-			controller = require './controllers/' + contpath.controller
+app.get '/get/servers', require('./controllers/servers')
+app.get '/get/servers/status', require('./controllers/overview')
+app.get /^\/get\/server\/(.)+$/, require('./controllers/retrieve')
 
-	controller request, response
-	return
+app.get /^\/asset\/(.)+$/, require('./controllers/asset')
 
-server = http.createServer onRequest
-server.listen config.getFrontendSettings().port
-
-# set repeating tasks
-setInterval store.statCPU, 300000
+# Set ExpressJS to listen.
+app.listen config.getFrontendSettings().port
