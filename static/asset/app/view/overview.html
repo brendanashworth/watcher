@@ -1,1 +1,21 @@
-<h1>THIS IS MY OVERVIEW</h1>
+<div class="col-md-12">
+	<h1>Network Overview</h1>
+
+	<table class="table table-curved">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="server in servers" class="{{ server.online ? 'success' : 'danger' }}">
+				<td>{{ server.id }}</td>
+				<td>{{ server.name }}</td>
+				<td>{{ server.online ? "Online" : "Offline" }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

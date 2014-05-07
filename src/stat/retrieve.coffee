@@ -1,5 +1,6 @@
 # retrieve.js, stats the server
 fs    = require 'fs'
+os    = require 'os'
 async = require 'async'
 exec  = require('child_process').exec
 store = require '../storage/storecpu'
@@ -60,13 +61,7 @@ module.exports =
 						callback null, stdout
 
 				hostname: (callback) ->
-					fs.readFile '/etc/hostname', {encoding: 'utf8'}, (err, data) ->
-						if err
-							console.log "Error loading /etc/hostname: #{err}"
-							callback null, 'hostname'
-							return
-
-						callback null, data
+					callback null, os.hostname()
 
 				disk_usage: (callback) ->
 					exec 'df -h | awk \'{if (NR!=1) {print $1" "$2" "$3" "$4" "$5" "$6}}\'', (err, stdout, stderr) ->
@@ -75,6 +70,18 @@ module.exports =
 							callback null, 'disk_usage'
 
 						callback null, stdout
+
+				system: (callback) ->
+					callback null, os.type()
+
+				cpu_arch: (callback) ->
+					callback null, os.arch()
+
+				interfaces: (callback) ->
+					callback null, os.networkInterfaces()
+
+				cpus: (callback) ->
+					callback null, os.cpus()
 			}, (err, results) ->
 				# load average
 				loadavg = results['load_average'].split(' ')
@@ -82,8 +89,11 @@ module.exports =
 				serverData.load_average.five_min = loadavg[1]
 				serverData.load_average.fifteen_min = loadavg[2]
 
+				# cpu info
+				serverData.cpus = results['cpus']
+
 				# numcpu
-				serverData.num_cpu = results['num_cpu'];
+				serverData.num_cpu = results['num_cpu']
 
 				# disk usage
 				diskusage = results['disk_usage']
@@ -101,6 +111,13 @@ module.exports =
 				# uptime
 				uptime = results['uptime']
 				serverData.node_uptime = Math.round(uptime)
+
+				# different info
+				serverData.cpu_arch = results['cpu_arch']
+				serverData.system = results['system']
+
+				# network interfaces
+				serverData.interfaces = results['interfaces']
 
 				# hostname
 				hostname = results['hostname']

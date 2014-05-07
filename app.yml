@@ -20,3 +20,8 @@ servers:
         host: "localhost"
         port: "3137"
         id: 2
+#    3:
+#        name: "Offline server"
+#        host: "198.51.100.2"
+#        port: "3137"
+#        id: 3
