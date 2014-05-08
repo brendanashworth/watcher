@@ -3,7 +3,6 @@ fs    = require 'fs'
 os    = require 'os'
 async = require 'async'
 exec  = require('child_process').exec
-store = require '../storage/storecpu'
 
 module.exports =
 	stat: (callback) ->
@@ -23,15 +22,7 @@ module.exports =
 		# async.parallel runs all our statistic generating stuff asynchronously, not waiting for eachother. it calls back our function at the end.
 		async.parallel {
 				load_average: (callback) ->
-					fs.readFile '/proc/loadavg', {encoding: 'utf8'}, (err, data) ->
-						# if there was an error
-						if err
-							console.log "Error loading /proc/loadavg: #{err}"
-							callback null, 'load_average'
-							return
-
-						callback null, data
-						store.addCPU data.split(' ')[0]
+					callback null, os.loadavg()
 
 				cpu_cores: (callback) ->
 					exec 'nproc', (err, stdout, stderr) ->
@@ -84,10 +75,9 @@ module.exports =
 					callback null, os.cpus()
 			}, (err, results) ->
 				# load average
-				loadavg = results['load_average'].split(' ')
-				serverData.load_average.one_min = loadavg[0]
-				serverData.load_average.five_min = loadavg[1]
-				serverData.load_average.fifteen_min = loadavg[2]
+				serverData.load_average.one_min = results['load_average'][0]
+				serverData.load_average.five_min = results['load_average'][1]
+				serverData.load_average.fifteen_min = results['load_average'][2]
 
 				# cpu info
 				serverData.cpus = results['cpus']
