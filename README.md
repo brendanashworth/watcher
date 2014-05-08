@@ -6,7 +6,7 @@ watcher.js
 
 The software is written in [Node.js](http://nodejs.org "NodeJS"), with a [CoffeeScript](http://coffeescript.org "CoffeeScript") backend. The frontend is composed of an [AngularJS](https://angularjs.org/) application, written in pure JavaScript.
 
-![screenshot of watcher.js](http://upimg.me/724128926c73ff30ffacb1ab30996b51.png)
+![screenshot of watcher.js](http://upimg.me/c76984b4fe5075899b8738cca4969a4b.png)
 
 ### Configuration
 A sample configuration file can be found [here](https://github.com/boboman13/watcher.js/blob/master/app.yml). Here is a brief overview of the settings:
