@@ -4,8 +4,7 @@ url = require 'url'
 config = require '../../config'
 
 module.exports = (request, response) ->
-		path = url.parse(request.url).pathname
-		id = path.substring(12, path.length)
+		id = request.params.id
 
 		if not config.getServers()[id]
 			response.writeHead 404
