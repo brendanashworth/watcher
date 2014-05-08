@@ -19,9 +19,10 @@
 					<a class="navbar-brand" href="#/">watcher.js</a>
 				</div>
 				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="#/server/1">Server #1</a></li>
-						<li><a href="#/server/2">Server #2</a></li>
+					<ul class="nav navbar-nav" ng-controller="ServerListController">
+						<li ng-repeat="server in servers">
+							<a href="#/server/{{ server.id }}">{{ server.name}} (#{{ server.id }})</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -46,5 +47,6 @@
 		<script type="text/javascript" src="/asset/app/app.js"></script>
 		<script type="text/javascript" src="/asset/app/controllers/overview.js"></script>
 		<script type="text/javascript" src="/asset/app/controllers/server.js"></script>
+		<script type="text/javascript" src="/asset/app/controllers/serverlist.js"></script>
 	</body>
 </html>
