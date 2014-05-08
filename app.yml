@@ -11,17 +11,7 @@ settings:
 servers:
     # Example server
     1:
-        name: "Frontend Server"
+        name: "localhost"
         host: "127.0.0.1"
         port: "3137"
         id: 1
-    2:
-        name: "External Daemon"
-        host: "localhost"
-        port: "3137"
-        id: 2
-#    3:
-#        name: "Offline server"
-#        host: "198.51.100.2"
-#        port: "3137"
-#        id: 3
