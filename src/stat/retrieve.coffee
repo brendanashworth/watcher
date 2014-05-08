@@ -24,15 +24,6 @@ module.exports =
 				load_average: (callback) ->
 					callback null, os.loadavg()
 
-				cpu_cores: (callback) ->
-					exec 'nproc', (err, stdout, stderr) ->
-						if err
-							console.log "Error running 'nproc': #{err}"
-							callback null, 'num_cpu'
-							return;
-
-						callback null, stdout
-
 				mem_usage: (callback) ->
 					exec 'cat /proc/meminfo | grep \'Mem\' | awk \'{print $2}\'', (err, stdout, stderr) ->
 						if err
@@ -79,11 +70,8 @@ module.exports =
 				serverData.load_average.five_min = results['load_average'][1]
 				serverData.load_average.fifteen_min = results['load_average'][2]
 
-				# cpu info
-				serverData.cpus = results['cpus']
-
 				# numcpu
-				serverData.num_cpu = results['num_cpu']
+				serverData.num_cpu = results['cpus'].length
 
 				# disk usage
 				diskusage = results['disk_usage']
