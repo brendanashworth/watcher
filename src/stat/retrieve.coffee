@@ -6,18 +6,7 @@ exec  = require('child_process').exec
 
 module.exports =
 	stat: (callback) ->
-		serverData =
-			'load_average':
-				'one_min': ''
-				'five_min': ''
-				'fifteen_min': ''
-			'num_cpu': ''
-			'node_hostname': ''
-			'node_uptime': ''
-			'disk_usage': {}
-			'mem_usage':
-				'total': ''
-				'free': ''
+		serverData = {}
 
 		# async.parallel runs all our statistic generating stuff asynchronously, not waiting for eachother. it calls back our function at the end.
 		async.parallel {
