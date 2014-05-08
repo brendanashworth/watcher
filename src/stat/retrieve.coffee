@@ -76,8 +76,7 @@ module.exports =
 						'mount': line.split(' ')[5]
 
 				# uptime
-				uptime = results['uptime']
-				serverData.node_uptime = Math.round(uptime)
+				serverData.node_uptime = Math.round(results['uptime'])
 
 				# different info
 				serverData.cpu_arch = results['cpu_arch']
@@ -87,8 +86,7 @@ module.exports =
 				serverData.interfaces = results['interfaces']
 
 				# hostname
-				hostname = results['hostname']
-				serverData.node_hostname = hostname
+				serverData.node_hostname = results['hostname']
 
 				# mem usage
 				memusage = results['mem_usage']
