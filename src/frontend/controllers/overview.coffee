@@ -4,22 +4,22 @@ url = require 'url'
 config = require '../../config'
 
 module.exports = (request, response) ->
-		servers = config.getServers()
-		timeouts = []
-		connections = []
+	servers = config.getServers()
+	timeouts = []
+	connections = []
 
-		for id, server of servers
-			timeouts[id] = setTimeout(->
-				if not servers[id].online?
-					servers[id].online = false
-			, 5000)
+	for id, server of servers
+		timeouts[id] = setTimeout(->
+			if not servers[id].online?
+				servers[id].online = false
+		, 5000)
 
-			connections[id] = net.createConnection {port: server.port, host: server.host}, do ->
-				servers[id].online = true
-				clearTimeout(timeouts[id])
+		connections[id] = net.createConnection {port: server.port, host: server.host}, do ->
+			servers[id].online = true
+			clearTimeout(timeouts[id])
 
-		setTimeout( ->
-			response.writeHead 200
-			response.write(JSON.stringify servers)
-			response.end()
-		, 5500)
+	setTimeout( ->
+		response.writeHead 200
+		response.write(JSON.stringify servers)
+		response.end()
+	, 5500)

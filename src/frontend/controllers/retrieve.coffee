@@ -1,6 +1,5 @@
 # retrieve is a controller
 net = require 'net'
-url = require 'url'
 config = require '../../config'
 
 module.exports = (request, response) ->

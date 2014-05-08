@@ -10,7 +10,7 @@ app.get '/', require('./controllers/index')
 
 app.get '/get/servers', require('./controllers/servers')
 app.get '/get/servers/status', require('./controllers/overview')
-app.get '/get/server/:id', require('./controllers/retrieve')
+app.get '/get/servers/:id', require('./controllers/retrieve')
 
 app.get /^\/asset\/(.)+$/, require('./controllers/asset')
 

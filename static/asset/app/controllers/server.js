@@ -1,5 +1,5 @@
 app.controller('ServerController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-	$http({method: 'GET', url: '/get/server/' + $routeParams.id})
+	$http({method: 'GET', url: '/get/servers/' + $routeParams.id})
 		.success(function(data, status, headers, config) {
 			$scope.disks = data.disk_usage;
 			$scope.hostname = data.node_hostname;
