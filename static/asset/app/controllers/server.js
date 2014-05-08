@@ -5,7 +5,7 @@ app.controller('ServerController', ['$scope', '$routeParams', '$http', function(
 			$scope.hostname = data.node_hostname;
 			$scope.cores = data.num_cpu > 1 ? data.num_cpu + " cores" : data.num_cpu + " core";
 			$scope.ram = getAmount(data.mem_usage.total);
-			$scope.cpu_load = round(data.load_average.one_min * 100);
+			$scope.cpu_load = Math.round(data.load_average.one_min * 100);
 			$scope.cpu_arch = data.cpu_arch;
 			$scope.platform = data.system;
 			$scope.interfaces = data.interfaces;
