@@ -1,6 +1,7 @@
 # NPM and compiled .js
 /node_modules
 /dist
+npm-debug.log
 
 # Configuration
 /app.yml
