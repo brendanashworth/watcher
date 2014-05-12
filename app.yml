@@ -7,6 +7,9 @@ settings:
         host: "0.0.0.0"
     frontend:
         port: 8080
+        # Frontend authentication. If true, it will authenticate all connected users to the panel with the given username / password.
+        # Username and password combinations are located in ~/users.htpasswd
+        auth: false
 # This is not necessary if you are only running a daemon off this machine.
 servers:
     # Example server
