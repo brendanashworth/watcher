@@ -5,7 +5,7 @@ npm-debug.log
 
 # Configuration
 /app.yml
-/users.htpasswd
+users.htpasswd
 
 # Testing
 /test/npm-debug.log
