@@ -64,6 +64,9 @@ module.exports =
 
 				# numcpu
 				serverData.num_cpu = results['cpus'].length
+				
+				# cpu
+				serverData.cpus = results['cpus']
 
 				# disk usage
 				diskusage = results['disk_usage']
