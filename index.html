@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>watcher.js by boboman13</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>watcher.js</h1>
+        <h2>Network management done right - manage and watch servers, databases, and more from a simple web UI.</h2>
+        <a href="https://github.com/boboman13/watcher.js" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="watcherjs" class="anchor" href="#watcherjs"><span class="octicon octicon-link"></span></a>watcher.js</h1>
+
+<p><a href="https://travis-ci.org/boboman13/watcher.js"><img src="https://travis-ci.org/boboman13/watcher.js.svg" alt="Build Status"></a></p>
+
+<blockquote>
+<p>watcher.js is a server management tool, designed to enable a system admin (or anyone that uses multiple servers) to keep a watch on their servers. It keeps track of uptime, network connections, speed, and more.</p>
+</blockquote>
+
+<p>The software is written in <a href="http://nodejs.org" title="NodeJS">Node.js</a>, with a <a href="http://coffeescript.org" title="CoffeeScript">CoffeeScript</a> backend. The frontend is composed of an <a href="https://angularjs.org/">AngularJS</a> application, written in pure JavaScript.</p>
+
+<p><img src="http://upimg.me/c76984b4fe5075899b8738cca4969a4b.png" alt="screenshot of watcher.js"></p>
+
+<h3>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h3>
+
+<p>A sample configuration file can be found <a href="https://github.com/boboman13/watcher.js/blob/master/app.yml">here</a>. Here is a brief overview of the settings:</p>
+
+<ul>
+<li>Settings
+
+<ul>
+<li>Daemon: The settings for the daemon include the hostname and the port. Change these to change what the socket listens on. These are necessary if you are running a frontend also.</li>
+<li>Frontend: The settings for the frontend include just the port to listen on. It will listen on all interfaces regardless.</li>
+</ul>
+</li>
+<li>Servers
+
+<ul>
+<li>Server: A server takes four options: name, host, port, and id. It is necessary to put a <code>localhost</code> server if you wish to utilize the frontend server as a registered server, it will not list it automatically. The id should be the same as the list key. Putting the servers are <em>only necessary for the frontend</em>.</li>
+</ul>
+</li>
+</ul><h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>git clone https://github.com/boboman13/watcher.js.git
+<span class="nv">$ </span><span class="nb">cd </span>watcher.js
+
+<span class="nv">$ </span>npm install
+<span class="nv">$ </span>npm run compile <span class="c"># Compiles the app. Scroll down to Compilation for more information.</span>
+
+<span class="nv">$ </span>node watcher
+</pre></div>
+
+<h3>
+<a name="compilation" class="anchor" href="#compilation"><span class="octicon octicon-link"></span></a>Compilation</h3>
+
+<p>Compiling watcher.js requires <a href="http://coffeescript.org">CoffeeScript</a>.</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm -g install coffee-script
+<span class="nv">$ </span>npm run compile
+</pre></div>
+
+<p>Running <code>npm run compile</code> runs the following script:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>coffee -co dist/ src/
+</pre></div>
+
+<p>This calls the CoffeeScript compiler to compile all .coffee files in <code>src</code> into .js files, and place them into their respective <code>dist</code> position.</p>
+
+<h3>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h3>
+
+<p>Contributing to watcher.js is easy. Simply fork the repository, commit changes to your own repository, and then pull request the changes. Here is a contributing FAQ.</p>
+
+<blockquote>
+<p>Do I need to know CoffeeScript to contribute to watcher.js?</p>
+</blockquote>
+
+<p>No. CoffeeScript is only used on the backend, and you may contribute to the frontend (Javascript, HTML, CSS) if you know the correct languages.</p>
+
+<blockquote>
+<p>Do I need to know how to program to contribute to watcher.js?</p>
+</blockquote>
+
+<p>No! If you find an issue or want a feature, create a <a href="https://github.com/boboman13/watcher.js/issues">new issue</a>. It'll help us figure out how we can help you.</p>
+
+<blockquote>
+<p>Why is watcher.js written in CoffeeScript? Why not just Javascript?</p>
+</blockquote>
+
+<p>CoffeeScript has an eloquent syntax and favors readability. Not the entire app is written in CoffeeScript, but the language helps cut down on app size and code length by removing trivial characters necessary with Javascript.</p>
+
+<blockquote>
+<p>What can I do to contribute?</p>
+</blockquote>
+
+<p>Besides general code additions, you can write <em>unit tests</em>.</p>
+
+<h3>
+<a name="unit-tests" class="anchor" href="#unit-tests"><span class="octicon octicon-link"></span></a>Unit Tests</h3>
+
+<p>Unit testing setup:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install -g mocha
+<span class="nv">$ </span>npm run compile
+</pre></div>
+
+<p>Initiating unit test module:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm <span class="nb">test</span>
+</pre></div>
+
+<p>Running <code>npm test</code> runs the <code>mocha</code> testing library along with the CoffeeScript compiler.</p>
+
+<p>We want to try and get every part of our code as a unit test! Try and contribute a unit test module.</p>
+
+<h3>
+<a name="writing-unit-tests" class="anchor" href="#writing-unit-tests"><span class="octicon octicon-link"></span></a>Writing Unit Tests</h3>
+
+<p>Use the <code>/test/src_stat_retrieve.coffee</code> unit test as an example.</p>
+
+<p>The file naming structure is after the directory location in <code>src</code>, not <code>dist</code>. For example: it is located in <code>/src/stat/retrieve.coffee</code>, so the file is named <code>src_stat_retrieve.coffee</code>.</p>
+
+<p>The unit test contains every single function within the file and runs multiple tests on the function. Running multiple tests on the function <em>is not necessary</em>, but it helps debug when a test fails.</p>
+
+<p>It is good to put comments in your unit tests! Though CoffeeScript, Mocha, and Chai are all very verbose, unit tests are for humans, not machines!</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/boboman13/watcher.js/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/boboman13/watcher.js/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/boboman13/watcher.js"></a> is maintained by <a href="https://github.com/boboman13">boboman13</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
