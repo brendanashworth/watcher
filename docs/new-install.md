@@ -10,6 +10,7 @@ This entire documentation assumes you have the following installed:
 ### Clone repository
 ```bash
 $ git clone https://github.com/boboman13/watcher.js
+$ cd watcher.js
 ```
 
 ### Resolve dependencies
