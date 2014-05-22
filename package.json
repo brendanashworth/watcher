@@ -8,7 +8,8 @@
     "async": "~0.2.10",
     "js-yaml": "~3.0.2",
     "mime": "~1.2.11",
-    "express": "~4.1.1"
+    "express": "~4.1.1",
+    "http-auth": "~2.1.7"
   },
   "devDependencies": {
     "chai": "*",
