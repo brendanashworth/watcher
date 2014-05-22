@@ -5,7 +5,7 @@
 This entire documentation assumes you have the following installed:
 * [NodeJS](http://nodejs.org/)
 * [NPM](https://www.npmjs.org/)
-* Coffeescript: `npm install -g coffeescript`
+* Coffeescript: `npm install -g coffee-script`
 
 ### Clone repository
 ```bash
