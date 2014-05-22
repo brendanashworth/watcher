@@ -1,6 +1,7 @@
 watcher.js
 =====
 [![Build Status](https://travis-ci.org/boboman13/watcher.js.svg)](https://travis-ci.org/boboman13/watcher.js)
+[![Dependency Status](https://david-dm.org/boboman13/watcher.js.svg)](https://david-dm.org/boboman13/watcher.js)
 
 > Watcher.js is a server management tool, designed to enable a system admin (or anyone that uses multiple servers) to keep a watch on their servers. It keeps track of uptime, network connections, speed, and more.
 
