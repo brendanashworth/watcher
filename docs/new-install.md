@@ -25,6 +25,6 @@ $ node watcher
 ```
 
 ### Done!
-The application is running on ***:8080**. Just go there in your web browser to see it!
+The application is running on **\*:8080**. Just go there in your web browser to see it!
 
 The basic installation is now completed. This installation does not require authentication and is only setup on one server. View this tutorial (link pending) to learn how to install another daemon.
