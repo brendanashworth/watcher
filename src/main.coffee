@@ -37,7 +37,7 @@ start = ->
 
 		logger.success 'Successfully shut down.'
 
-		process.kill(process.pid)
+		process.exit()
 
 	return
 
