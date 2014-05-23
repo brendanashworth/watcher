@@ -32,8 +32,10 @@ start = ->
 		logger.raw '' # We send down an empty line so that we clear the ^C line.
 		logger.info 'Shutting down watcher.js...'
 
-		daemon.close()
-		frontend.close()
+		if daemon?
+			daemon.close()
+		if frontend?
+			frontend.close()
 
 		logger.success 'Successfully shut down.'
 
