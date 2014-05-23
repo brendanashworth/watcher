@@ -3,6 +3,7 @@ fs    = require 'fs'
 os    = require 'os'
 async = require 'async'
 exec  = require('child_process').exec
+logger = require '../logging/index'
 
 module.exports =
 	stat: (callback) ->
@@ -19,7 +20,7 @@ module.exports =
 				mem_usage: (callback) ->
 					exec 'cat /proc/meminfo | grep \'Mem\' | awk \'{print $2}\'', (err, stdout, stderr) ->
 						if err
-							console.log "Error running \'cat /proc/meminfo\': #{err}"
+							logger.error "Error running \'cat /proc/meminfo\': #{err}"
 							callback null, 'mem_usage'
 							return
 
@@ -28,7 +29,7 @@ module.exports =
 				uptime: (callback) ->
 					exec 'cat /proc/uptime | awk \'{print $1}\'', (err, stdout, stderr) ->
 						if err
-							console.log "Error running \'cat /proc/uptime\': #{err}"
+							logger.error "Error running \'cat /proc/uptime\': #{err}"
 							callback null, 'mem_usage'
 							return
 
@@ -40,7 +41,7 @@ module.exports =
 				disk_usage: (callback) ->
 					exec 'df -h | awk \'{if (NR!=1) {print $1" "$2" "$3" "$4" "$5" "$6}}\'', (err, stdout, stderr) ->
 						if err
-							console.log "Error running \'df\': #{err}"
+							logger.error "Error running \'df\': #{err}"
 							callback null, 'disk_usage'
 
 						callback null, stdout
