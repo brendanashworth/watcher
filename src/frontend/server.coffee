@@ -27,7 +27,7 @@ app.get /^\/asset\/(.)+$/, require('./controllers/asset')
 # Set ExpressJS to listen.
 server = app.listen config.getFrontendSettings().port
 
-logger.success 'Frontend booted successfully.'
+logger.success "Frontend booted successfully. (*:#{config.getFrontendSettings().port})"
 
 module.exports =
 	close: ->
