@@ -16,4 +16,8 @@ server = net.createServer (socket) ->
 
 server.listen port, host
 
+module.exports =
+	close: ->
+		server.close()
+
 logger.success 'Daemon booted successfully.'

@@ -4,7 +4,7 @@ logger = require './logging/index'
 
 # start server
 start = ->
-	logger.info 'Starting watcher.js...'
+	logger.info 'Starting watcher.js... [^C to quit]'
 
 	# get type
 	type = config.getServerType()
@@ -26,6 +26,19 @@ start = ->
 		logger.info 'Loading server type: daemon'
 		# just the daemon
 		daemon   = require './daemon/server'
+
+	# If we're starting the server, lets listen for shut down.
+	process.on 'SIGINT', ->
+		logger.raw '' # We send down an empty line so that we clear the ^C line.
+		logger.info 'Shutting down watcher.js...'
+
+		daemon.close()
+		frontend.close()
+
+		logger.success 'Successfully shut down.'
+
+		process.kill(process.pid)
+
 	return
 
 # exports

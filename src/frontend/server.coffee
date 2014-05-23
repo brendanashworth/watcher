@@ -25,6 +25,10 @@ app.get '/get/servers/:id', require('./controllers/retrieve')
 app.get /^\/asset\/(.)+$/, require('./controllers/asset')
 
 # Set ExpressJS to listen.
-app.listen config.getFrontendSettings().port
+server = app.listen config.getFrontendSettings().port
 
 logger.success 'Frontend booted successfully.'
+
+module.exports =
+	close: ->
+		server.close()
