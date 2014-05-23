@@ -2,6 +2,7 @@
 net = require 'net'
 stat = require '../stat/retrieve'
 config = require '../config'
+logger = require '../logging/index'
 
 port = config.getDaemonSettings().port
 host = config.getDaemonSettings().host
@@ -14,3 +15,5 @@ server = net.createServer (socket) ->
 		socket.end()
 
 server.listen port, host
+
+logger.success 'Daemon booted successfully.'

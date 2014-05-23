@@ -2,6 +2,7 @@
 config = require '../config'
 express = require 'express'
 auth = require 'http-auth'
+logger = require '../logging/index'
 
 # Initiate application.
 app = express()
@@ -11,7 +12,7 @@ authSettings = auth.basic
 	file: __dirname + "/../../users.htpasswd"
 
 if config.getFrontendSettings().auth
-	console.log "Authentication is turned on for the frontend"
+	logger.info "Authentication is turned on for the frontend"
 	app.use auth.connect(authSettings)
 
 # Setup ExpressJS's routes.
@@ -25,3 +26,5 @@ app.get /^\/asset\/(.)+$/, require('./controllers/asset')
 
 # Set ExpressJS to listen.
 app.listen config.getFrontendSettings().port
+
+logger.success 'Frontend booted successfully.'
