@@ -31,4 +31,9 @@ logger.success "Frontend booted successfully. (*:#{config.getFrontendSettings().
 
 module.exports =
 	close: ->
-		server.close()
+		if server?
+			server.close()
+			server = undefined
+			return yes
+		else
+			return no
