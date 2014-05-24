@@ -1,6 +1,8 @@
 # logging file
 chalk = require 'chalk'
 
+isTesting = no
+
 # gets us the short time, 'month/day/year hour:minute:second'
 shortTime = ->
 	date = new Date()
@@ -8,7 +10,8 @@ shortTime = ->
 
 # logs a message to the console
 raw = (message) ->
-	console.log message
+	if not isTesting
+		console.log message
 
 module.exports =
 	error: (message) ->
@@ -22,3 +25,6 @@ module.exports =
 
 	raw: (message) ->
 		raw message
+
+	setTesting: (value) ->
+		isTesting = value
