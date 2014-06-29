@@ -8,7 +8,7 @@ module.exports = (request, response) ->
 		# get the file uri
 		uri = url.parse request.url
 		uri = uri.pathname
-		path = "static/asset/" + uri.substring 7, uri.length
+		path = "dist/static/asset/" + uri.substring 7, uri.length
 
 		# check if path contains '..'
 		if path.indexOf('..') > -1
