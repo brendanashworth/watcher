@@ -1,7 +1,8 @@
 # frontend server.js
-config = require '../config'
+staticize = require 'staticize'
 express = require 'express'
 auth = require 'http-auth'
+config = require '../config'
 logger = require '../logging/index'
 
 # Initiate application.
@@ -16,7 +17,8 @@ if config.getFrontendSettings().auth
 	app.use auth.connect(authSettings)
 
 # Setup ExpressJS's routes.
-app.get '/', require('./controllers/index')
+staticize app,
+	'/': './dist/static/index.html'
 
 app.get '/get/servers', require('./controllers/servers')
 app.get '/get/servers/status', require('./controllers/overview')
