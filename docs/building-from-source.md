@@ -7,7 +7,7 @@ This article will automatically assume you have a working space with NPM, NodeJS
 ### Clone repository
 This will clone the latest master branch with the latest code.
 ```bash
-$ git clone https://github.com/boboman13/watcher.js
+$ git clone https://github.com/brendanashworth/watcher.js
 ```
 
 ### Resolve dependencies

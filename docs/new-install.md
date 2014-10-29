@@ -9,7 +9,7 @@ This entire documentation assumes you have the following installed:
 
 ### Clone repository
 ```bash
-$ git clone https://github.com/boboman13/watcher.js
+$ git clone https://github.com/brendanashworth/watcher.js
 $ cd watcher.js
 ```
 
