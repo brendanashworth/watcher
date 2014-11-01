@@ -31,8 +31,7 @@ server = app.listen config.getFrontendSettings().port
 
 logger.success "Frontend booted successfully. (*:#{config.getFrontendSettings().port})"
 
-module.exports =
-	close: ->
+module.exports.close = ->
 		if server?
 			server.close()
 			server = undefined

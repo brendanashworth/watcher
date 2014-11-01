@@ -1,16 +1,16 @@
 {
   "author": "Brendan Ashworth",
   "name": "watcher",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Simple server network management utility; manage and get alerts from multiple servers with a distributed application - all from a simple web UI.",
   "main": "watcher.js",
   "dependencies": {
     "async": "~0.9.0",
     "mime": "~1.2.11",
     "staticize": "^0.9.4",
-    "js-yaml": "~3.1.0",
-    "express": "~4.6.1",
-    "http-auth": "~2.1.7",
+    "js-yaml": "~3.2.2",
+    "express": "~4.10.1",
+    "http-auth": "~2.2.0",
     "chalk": "~0.5.1"
   },
   "devDependencies": {
@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/brendanashworth/watcher.js.git"
+    "url": "https://github.com/brendanashworth/watcher.git"
   },
   "scripts": {
     "start": "node watcher",

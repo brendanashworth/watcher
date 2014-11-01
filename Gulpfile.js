@@ -10,7 +10,7 @@ require('coffee-script').register();
 gulp.task('default', ['clean', 'coffee', 'less', 'statics']);
 
 gulp.task('test', function() {
-	gulp.src('test/**/*.coffee')
+	return gulp.src('test/**/*.coffee')
 		.pipe(mocha({reporter: 'spec'}));
 });
 

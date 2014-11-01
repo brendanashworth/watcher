@@ -3,8 +3,8 @@ config = require './config'
 logger = require './logging/index'
 
 # start server
-start = ->
-	logger.info 'Starting watcher.js... [^C to quit]'
+module.exports.start = ->
+	logger.info 'Starting watcher... [^C to quit]'
 
 	# get type
 	type = config.getServerType()
@@ -35,7 +35,7 @@ start = ->
 	return
 
 # closes the server
-close = ->
+module.exports.close = ->
 	logger.info 'Shutting down watcher.js...'
 
 	if daemon?
@@ -47,11 +47,4 @@ close = ->
 
 	# Done!
 	process.exit()
-
-# exports
-module.exports =
-	start: ->
-		start()
-
-	close: ->
-		close()
+	
