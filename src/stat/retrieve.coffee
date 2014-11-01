@@ -18,22 +18,10 @@ module.exports =
 					callback null, os.loadavg()
 
 				mem_usage: (callback) ->
-					exec 'cat /proc/meminfo | grep \'Mem\' | awk \'{print $2}\'', (err, stdout, stderr) ->
-						if err
-							logger.error "Error running \'cat /proc/meminfo\': #{err}"
-							callback null, 'mem_usage'
-							return
-
-						callback null, stdout
+					callback null, [os.totalmem(), os.freemem()]
 
 				uptime: (callback) ->
-					exec 'cat /proc/uptime | awk \'{print $1}\'', (err, stdout, stderr) ->
-						if err
-							logger.error "Error running \'cat /proc/uptime\': #{err}"
-							callback null, 'mem_usage'
-							return
-
-						callback null, stdout
+					callback null, os.uptime()
 
 				hostname: (callback) ->
 					callback null, os.hostname()
@@ -97,9 +85,8 @@ module.exports =
 
 				# mem usage
 				memusage = results['mem_usage']
-				lines = memusage.match /[^\r\n]+/g
-				serverData.mem_usage.total = lines[0] * 1024
-				serverData.mem_usage.free = lines[1] * 1024 # multiply by 1024 to transfer kb -> bytes
+				serverData.mem_usage.total = memusage[0]
+				serverData.mem_usage.free = memusage[1]
 
 				callback serverData
 
