@@ -5,9 +5,8 @@ node_js:
   - "0.10"
 
 before_install:
-  - "npm install -g mocha"
-  - "npm install -g coffee-script"
-  - "npm run compile"
+  - "npm install -g mocha gulp coffee-script"
+  - "gulp"
 
 notifications:
   email: false

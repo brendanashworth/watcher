@@ -7,7 +7,7 @@
   "dependencies": {
     "async": "~0.9.0",
     "mime": "~1.2.11",
-    "staticize": "^0.9.4"
+    "staticize": "^0.9.4",
     "js-yaml": "~3.1.0",
     "express": "~4.6.1",
     "http-auth": "~2.1.7",
@@ -15,12 +15,12 @@
   },
   "devDependencies": {
     "chai": "~1.9.1",
-    "coffee-script": "~1.7.1",
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-coffee": "^0.10.1",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-less": "^0.11.3",
+    "coffee-script": "^1.8.0",
+    "del": "^0.1.3",
+    "gulp": "^3.8.9",
+    "gulp-coffee": "^2.2.0",
+    "gulp-less": "^1.3.6",
+    "gulp-mocha": "^1.1.1",
     "mocha": "~1.19.0"
   },
   "repository": {
@@ -28,7 +28,8 @@
     "url": "https://github.com/brendanashworth/watcher.js.git"
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script/register --reporter spec"
+    "start": "node watcher",
+    "test": "gulp test"
   },
   "license": "GNU General Public License v2",
   "readmeFilename": "README.md",

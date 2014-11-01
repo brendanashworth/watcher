@@ -5,12 +5,12 @@
 This entire documentation assumes you have the following installed:
 * [NodeJS](http://nodejs.org/)
 * [NPM](https://www.npmjs.org/)
-* Coffeescript: `npm install -g coffee-script`
+* CoffeeScript & Gulp: `npm install -g coffee-script gulp`
 
 ### Clone repository
 ```bash
-$ git clone https://github.com/brendanashworth/watcher.js
-$ cd watcher.js
+$ git clone https://github.com/brendanashworth/watcher
+$ cd watcher
 ```
 
 ### Resolve dependencies
@@ -20,8 +20,8 @@ $ npm install
 
 ### Compile and start frontend (+daemon)
 ```bash
-$ npm run compile
-$ node watcher
+$ gulp
+$ npm start
 ```
 
 ### Done!

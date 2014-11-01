@@ -23,7 +23,7 @@ No. CoffeeScript is only used on the backend, and you may contribute to the fron
 
 > Do I need to know how to program to contribute to watcher.js?
 
-No! If you find an issue or want a new feature, create a [new issue](https://github.com/brendanashworth/watcher.js/issues). Doing this will contribute to the software, even though you aren't writing code.
+No! If you find an issue or want a new feature, create a [new issue](https://github.com/brendanashworth/watcher/issues). Doing this will contribute to the software, even though you aren't writing code.
 
 > Why is watcher.js written in CoffeeScript? Why not just Javascript?
 
